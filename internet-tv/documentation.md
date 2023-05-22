@@ -107,6 +107,7 @@ source /internet-tv/setup/insert_sample-data.sql
 
 <details>
   <summary>エピソード視聴数トップ3のエピソードタイトルと視聴数を取得</summary>
+
 ```
 SELECT title, views
 FROM episodes
@@ -116,6 +117,7 @@ LIMIT 3;
 </details>
 <details>
   <summary>エピソード視聴数トップ3の番組タイトル、シーズン数、エピソード数、エピソードタイトル、視聴数を取得</summary>
+
 ```
 SELECT p.title, s.season_number, e.episode_number, e.title, e.views
 FROM episodes AS e
@@ -127,6 +129,7 @@ LIMIT 3;
 </details>
 <details>
   <summary>本日放送される全ての番組に対して、チャンネル名、放送開始時刻(日付+時間)、放送終了時刻、シーズン数、エピソード数、エピソードタイトル、エピソード詳細を取得。なお、番組の開始時刻が本日のものを本日方法される番組とみなす</summary>
+
 ```
 SELECT c.channel_name, ps.start_time, ps.end_time, s.season_number, e.episode_number, e.title, e.episode_detail
 FROM program_slots AS ps
@@ -139,6 +142,7 @@ ORDER BY ps.start_time;
 </details>
 <details>
   <summary>ドラマのチャンネルに対して、放送開始時刻、放送終了時刻、シーズン数、エピソード数、エピソードタイトル、エピソード詳細を本日から一週間分取得</summary>
+
 ```
 SELECT ps.start_time, ps.end_time, s.season_number, e.episode_number, e.title, e.episode_detail
 FROM program_slots AS ps
@@ -147,6 +151,13 @@ JOIN episodes AS e ON ps.episode_id = e.episode_id
 JOIN seasons AS s ON e.series_id = s.series_id
 JOIN program AS p ON s.program_id = p.program_id
 WHERE c.channel_name = 'ドラマ' AND DATE(ps.start_time) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 WEEK);
+```
+</details>
+<details>
+  <summary>直近一週間に放送された番組の中で、エピソード視聴数合計トップ2の番組に対して、番組タイトル、視聴数を取得</summary>
+
+```
+
 ```
 </details>
 </details>
