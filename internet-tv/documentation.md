@@ -141,9 +141,5 @@ JOIN seasons AS s ON e.series_id = s.series_id
 JOIN program AS p ON s.program_id = p.program_id
 WHERE c.channel_name = 'ドラマ' AND DATE(ps.start_time) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 WEEK);
 ```
-直近一週間に放送された番組の中で、エピソード視聴数合計トップ2の番組に対して、番組タイトル、視聴数を取得
-```
-
-```
 </details>
 </details>
